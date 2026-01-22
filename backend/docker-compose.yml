@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  backend:
+    build: .
+    ports:
+      - '4000:4000'
+    environment:
+      - PORT=4000
+      - MONGO_URI=mongodb://mongo:27017/jobportal
+      - JWT_ACCESS_SECRET=${JWT_ACCESS_SECRET}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET}
+      - APYHUB_API_KEY=${APYHUB_API_KEY}
+      - USE_APYHUB=${USE_APYHUB}
+      - APYHUB_ENDPOINT=${APYHUB_ENDPOINT}
+      - FRONTEND_URL=${FRONTEND_URL}
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:6
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+volumes:
+  mongo_data:
+

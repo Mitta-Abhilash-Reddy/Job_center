@@ -1,0 +1,6 @@
+const info = (message, meta) => console.log(message, meta || '');
+const error = (message, meta) => console.error(message, meta || '');
+
+module.exports = { info, error };
+
+
